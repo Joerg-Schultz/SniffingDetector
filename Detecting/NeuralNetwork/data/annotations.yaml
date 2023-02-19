@@ -1,0 +1,8 @@
+# 0-5 -> 0 < Selected <= 5
+test_3.wav:
+  - start: 0
+    end: 5
+    type: Background
+  - start: 5
+    end: 7
+    type: Sniffing
