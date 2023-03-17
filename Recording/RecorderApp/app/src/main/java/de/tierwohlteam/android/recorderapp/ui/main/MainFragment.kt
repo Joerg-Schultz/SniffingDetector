@@ -27,7 +27,6 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var viewModel: MainViewModel
-    private var isRecording = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,11 +46,12 @@ class MainFragment : Fragment() {
             context?.let {
                     it1 -> connectDialog(it1) }
         }
+        binding.btnStartstop.text = if (viewModel.isRecording) "Stop Recording" else "Start Recording"
 
         binding.btnStartstop.setOnClickListener {
-            isRecording = !isRecording
-            viewModel.sendRecorder(isRecording)
-            binding.btnStartstop.text = if (isRecording) "Stop Recording" else "Start Recording"
+            viewModel.isRecording = !viewModel.isRecording
+            viewModel.sendRecorder()
+            binding.btnStartstop.text = if (viewModel.isRecording) "Stop Recording" else "Start Recording"
         }
     }
 
