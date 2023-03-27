@@ -33,3 +33,49 @@ test_3.wav:
   - start: 249
     end: 290
     type: Background
+test_4.wav:
+  - start: 0
+    end: 33
+    type: Background
+  - start: 34
+    end: 40
+    type: Sniffing
+  - start: 42
+    end: 63
+    type: Background
+  - start: 64
+    end: 75
+    type: Sniffing
+  - start: 76
+    end: 105
+    type: Background
+  - start: 107
+    end: 159
+    type: Sniffing
+  - start: 160
+    end: 225
+    type: Background
+  - start: 247
+    end: 260
+    type: Sniffing
+  - start: 261
+    end: 279
+    type: Background
+  - start: 280
+    end: 295
+    type: Sniffing
+  - start: 305
+    end: 311
+    type: Sniffing
+  - start: 312
+    end: 334
+    type: Background
+  - start: 336
+    end: 341
+    type: Sniffing
+  - start: 343
+    end: 389
+    type: Background
+  - start: 397
+    end: 417
+    type: Background
