@@ -101,3 +101,48 @@ test_8.wav:
   - start: 105
     end: 114
     type: Background
+test_9.wav:
+  - start: 0
+    end: 33
+    type: Background
+  - start: 34
+    end: 43
+    type: Sniffing
+  - start: 44
+    end: 70
+    type: Background
+  - start: 71
+    end: 88
+    type: Sniffing
+  - start: 89
+    end: 111
+    type: Background
+  - start: 112
+    end: 131
+    type: Sniffing
+  - start: 133
+    end: 180
+    type: Background
+  - start: 196
+    end: 218
+    type: Background
+  - start: 340
+    end: 351
+    type: Sniffing
+  - start: 353
+    end: 372
+    type: Background
+  - start: 374
+    end: 419
+    type: Background
+  - start: 426
+    end: 440
+    type: Background
+  - start: 446
+    end: 452
+    type: Sniffing
+  - start: 453
+    end: 477
+    type: Background
+
+
