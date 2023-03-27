@@ -1,0 +1,5 @@
+outs:
+- md5: 56faeb3211ff8dad0f0a109a43083ac9.dir
+  size: 657304
+  nfiles: 4
+  path: sniffing_model

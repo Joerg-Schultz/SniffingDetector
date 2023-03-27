@@ -1,3 +1,7 @@
 data/test
 data/train
 data/raw
+sandbox.ipynb
+/sniffing_model
+/mlruns
+
