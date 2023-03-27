@@ -1,8 +1,35 @@
 # 0-5 -> 0 < Selected <= 5
 test_3.wav:
   - start: 0
-    end: 5
+    end: 28
     type: Background
-  - start: 5
-    end: 7
+  - start: 30
+    end: 40
     type: Sniffing
+  - start: 41
+    end: 70
+    type: Background
+  - start: 71
+    end: 76
+    type: Sniffing
+  - start: 76
+    end: 102
+    type: Background
+  - start: 103
+    end: 136
+    type: Sniffing
+  - start: 137
+    end: 180
+    type: Background
+  - start: 181
+    end: 190
+    type: Sniffing
+  - start: 191
+    end: 226
+    type: Background
+  - start: 228
+    end: 247
+    type: Sniffing
+  - start: 249
+    end: 290
+    type: Background
