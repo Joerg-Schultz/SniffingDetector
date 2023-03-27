@@ -144,5 +144,20 @@ test_9.wav:
   - start: 453
     end: 477
     type: Background
-
-
+test_10.wav:
+  - start: 0
+    end: 48
+    type: Background
+  - start: 49
+    end: 64
+    type: Sniffing
+  - start: 67
+    end: 93
+    type: Background
+  - start: 97
+    end: 99
+    type: Sniffing
+  - start: 101
+    end: 135
+    type: Background
+# Stopped here, too much paws on wood
