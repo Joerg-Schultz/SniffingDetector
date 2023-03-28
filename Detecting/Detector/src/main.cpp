@@ -108,7 +108,7 @@ void detectSniffingTask(void* parameters) {
                 Serial.printf("Average detection time %.fms\n", m_average_detect_time);
             }
             // use the same threshold as in training
-            if (output > 0.65) {
+            if (output > 0.6) {
                 m_number_of_detections++;
                 if (m_number_of_detections > 2) // TODO Problem when increasing to 1
                 {
