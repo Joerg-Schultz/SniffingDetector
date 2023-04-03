@@ -1,0 +1,5 @@
+outs:
+- md5: ea3caf8681872b6cc34d7aece1cdfbbc.dir
+  size: 315515
+  nfiles: 2
+  path: tflite_models
