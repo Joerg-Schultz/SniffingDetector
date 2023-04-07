@@ -98,7 +98,7 @@ void detectSniffingTask(void* parameters) {
             // get the prediction for the spectrogram
             float p_output_array[2];
             m_nn->predict(p_output_array);
-            float output = p_output_array[1]; // Prediction of the first neuron. Check
+            float output = p_output_array[0]; // Prediction of the first neuron. Check
             long end = millis();
             // compute the stats
             m_average_detect_time = (end - start) * 0.1 + m_average_detect_time * 0.9;
