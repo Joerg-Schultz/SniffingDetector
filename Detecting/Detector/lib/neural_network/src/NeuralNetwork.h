@@ -29,7 +29,8 @@ public:
     NeuralNetwork();
     ~NeuralNetwork();
     float *getInputBuffer();
-    float predict();
+    void predict(float* prediction);
+
 };
 
 #endif

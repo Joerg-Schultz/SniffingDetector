@@ -67,7 +67,7 @@ void sendStatusTask (void* parameters) {
     while (true) {
         // See if there's a message in the queue (do not block)
         if (xQueueReceive(msg_queue, (void *) &currentStatus, 0) == pdTRUE) {
-            Serial.println(currentStatus.sniffing);
+            //Serial.println(currentStatus.sniffing);
             sendToBTHubs(currentStatus);
         }
         vTaskDelay(5 / portTICK_PERIOD_MS); //Needed to avoid watchdog alert
@@ -96,7 +96,9 @@ void detectSniffingTask(void* parameters) {
             // finished with the sample reader
             delete reader;
             // get the prediction for the spectrogram
-            float output = m_nn->predict();
+            float p_output_array[2];
+            m_nn->predict(p_output_array);
+            float output = p_output_array[1]; // Prediction of the first neuron. Check
             long end = millis();
             // compute the stats
             m_average_detect_time = (end - start) * 0.1 + m_average_detect_time * 0.9;
@@ -105,16 +107,17 @@ void detectSniffingTask(void* parameters) {
             if (m_number_of_runs == 50)
             {
                 m_number_of_runs = 0;
-                Serial.printf("Average detection time %.fms\n", m_average_detect_time);
+                //Serial.printf("Average detection time %.fms\n", m_average_detect_time);
             }
             // use the same threshold as in training
-            if (output < 0.4) {
+            Serial.printf("Prediction: N1: %2f N2: %2f\t", p_output_array[0], p_output_array[1]);
+            if (output > 0.5) {
+                Serial.printf("Sniffing!...\n");
                 m_number_of_detections++;
-                if (m_number_of_detections > 2) // TODO Problem when increasing to 1
+                if (m_number_of_detections >= 1) // TODO Problem when increasing to 1
                 {
                     //m_number_of_detections = 0;
                     // detected the wake word in several runs, move to the next state
-                    Serial.printf("P(%.2f): I am Sniffing!...\n", output);
                     if (!detected) {
                         detected = true;
                         message currentStatus;
@@ -123,6 +126,7 @@ void detectSniffingTask(void* parameters) {
                     }
                 }
             } else {
+                Serial.printf("\n");
                 if (detected) {
                     detected = false;
                     message currentStatus;

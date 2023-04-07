@@ -1,3 +1,4 @@
+#include <esp_log.h>
 #include "NeuralNetwork.h"
 #include "model.h"
 #include "tensorflow/lite/micro/all_ops_resolver.h"
@@ -7,8 +8,9 @@
 #include "tensorflow/lite/version.h"
 
 // approximate working size of our model
-//const int kArenaSize = 25000;
-const int kArenaSize = 85000; // Arena size is too small for all buffers. Needed 80960 but only 24032 was available.
+const int kArenaSize = 25000;
+//const int kArenaSize = 100000;
+//const int kArenaSize = 85000; // Arena size is too small for all buffers. Needed 80960 but only 24032 was available.
 
 NeuralNetwork::NeuralNetwork()
 {
@@ -42,6 +44,7 @@ NeuralNetwork::NeuralNetwork()
     m_resolver->AddReshape();
     m_resolver->AddQuantize();
     m_resolver->AddDequantize();
+    m_resolver->AddSoftmax();
 
     // Build an interpreter to run the model with.
     m_interpreter = new tflite::MicroInterpreter(
@@ -76,8 +79,12 @@ float *NeuralNetwork::getInputBuffer()
     return input->data.f;
 }
 
-float NeuralNetwork::predict()
+void NeuralNetwork::predict(float *prediction)
 {
+    // TODO: use the gitBash xxd output model_data.cc
+    ESP_LOGI("NeuralNetwork", "Invoking Prediction");
     m_interpreter->Invoke();
-    return output->data.f[0];
+    ESP_LOGI("NeuralNetwork", "Done Prediction");
+    prediction[0] = output->data.f[0];
+    prediction[1] = output->data.f[1];
 }
