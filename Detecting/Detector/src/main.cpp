@@ -30,6 +30,8 @@ static QueueHandle_t msg_queue;
 int m_number_of_runs = 0;
 float m_average_detect_time = 0;
 int m_number_of_detections = 0;
+int m_number_of_backgrounds = 0;
+int smoothing_factor = 3;
 I2SSampler *m_sample_provider;
 NeuralNetwork *m_nn;
 AudioProcessor *m_audio_processor;
@@ -67,7 +69,8 @@ void sendStatusTask (void* parameters) {
     while (true) {
         // See if there's a message in the queue (do not block)
         if (xQueueReceive(msg_queue, (void *) &currentStatus, 0) == pdTRUE) {
-            //Serial.println(currentStatus.sniffing);
+            String state = (currentStatus.sniffing) ? "Sniffing" : "Background";
+            Serial.println(state);
             sendToBTHubs(currentStatus);
         }
         vTaskDelay(5 / portTICK_PERIOD_MS); //Needed to avoid watchdog alert
@@ -110,11 +113,12 @@ void detectSniffingTask(void* parameters) {
                 //Serial.printf("Average detection time %.fms\n", m_average_detect_time);
             }
             // use the same threshold as in training
-            Serial.printf("Prediction: N1: %2f N2: %2f\t", p_output_array[0], p_output_array[1]);
-            if (output > 0.5) {
-                Serial.printf("Sniffing!...\n");
+            // Serial.printf("Prediction: N1: %2f N2: %2f\t", p_output_array[0], p_output_array[1]);
+            if (output > 0.8) {
+                //Serial.printf("Sniffing!...\n");
+                m_number_of_backgrounds = 0;
                 m_number_of_detections++;
-                if (m_number_of_detections >= 1) // TODO Problem when increasing to 1
+                if (m_number_of_detections >= smoothing_factor)
                 {
                     //m_number_of_detections = 0;
                     // detected the wake word in several runs, move to the next state
@@ -126,13 +130,16 @@ void detectSniffingTask(void* parameters) {
                     }
                 }
             } else {
-                Serial.printf("\n");
-                if (detected) {
-                    detected = false;
-                    message currentStatus;
-                    currentStatus.sniffing = false;
-                    m_number_of_detections = 0;
-                    xQueueSend(msg_queue, (void *)&currentStatus, 10);
+                //Serial.printf("\n");
+                m_number_of_detections = 0;
+                m_number_of_backgrounds++;
+                if(m_number_of_backgrounds >= smoothing_factor) {
+                    if (detected) {
+                        detected = false;
+                        message currentStatus;
+                        currentStatus.sniffing = false;
+                        xQueueSend(msg_queue, (void *) &currentStatus, 10);
+                    }
                 }
             }
         }
