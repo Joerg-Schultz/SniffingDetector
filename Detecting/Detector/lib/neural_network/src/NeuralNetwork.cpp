@@ -6,7 +6,6 @@
 #include "tensorflow/lite/micro/micro_interpreter.h"
 #include "tensorflow/lite/schema/schema_generated.h"
 #include "tensorflow/lite/version.h"
-#include "Arduino.h"
 
 // approximate working size of our model
 const int kArenaSize = 25000;
@@ -26,7 +25,7 @@ NeuralNetwork::NeuralNetwork()
     TF_LITE_REPORT_ERROR(m_error_reporter, "Loading model");
 
     //m_model = tflite::GetModel(converted_model_tflite);
-    m_model = tflite::GetModel(sniffing_model_tflite);
+    m_model = tflite::GetModel(__tflite_models_model_tflite);
     if (m_model->version() != TFLITE_SCHEMA_VERSION)
     {
         TF_LITE_REPORT_ERROR(m_error_reporter, "Model provided is schema version %d not equal to supported version %d.",
@@ -85,4 +84,5 @@ void NeuralNetwork::predict(float *prediction)
     m_interpreter->Invoke();
     prediction[0] = output->data.f[0];
     prediction[1] = output->data.f[1];
+    prediction[2] = output->data.f[2];
 }

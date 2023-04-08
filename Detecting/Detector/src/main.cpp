@@ -99,22 +99,13 @@ void detectSniffingTask(void* parameters) {
             // finished with the sample reader
             delete reader;
             // get the prediction for the spectrogram
-            float p_output_array[2];
+            float p_output_array[3];
             m_nn->predict(p_output_array);
-            float output = p_output_array[0]; // Prediction of the first neuron. Check
-            long end = millis();
-            // compute the stats
-            m_average_detect_time = (end - start) * 0.1 + m_average_detect_time * 0.9;
-            m_number_of_runs++;
-            // log out some timing info
-            if (m_number_of_runs == 50)
-            {
-                m_number_of_runs = 0;
-                //Serial.printf("Average detection time %.fms\n", m_average_detect_time);
-            }
-            // use the same threshold as in training
-            // Serial.printf("Prediction: N1: %2f N2: %2f\t", p_output_array[0], p_output_array[1]);
-            if (output > 0.8) {
+            const int N = sizeof(p_output_array) / sizeof(float);
+            int prediction = std::distance(p_output_array, std::max_element(p_output_array, p_output_array + N));
+
+            //Serial.printf("Prediction: N1: %2f N2: %2f N3: %2f\t", p_output_array[0], p_output_array[1], p_output_array[2]);
+            if (prediction == 0) {
                 //Serial.printf("Sniffing!...\n");
                 m_number_of_backgrounds = 0;
                 m_number_of_detections++;
