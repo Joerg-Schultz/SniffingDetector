@@ -161,3 +161,20 @@ test_10.wav:
     end: 135
     type: Background
 # Stopped here, too much paws on wood
+test_11.wav:
+  - start: 1
+    end: 65
+    type: Quiet
+test_11c1.wav:
+  - start: 1
+    end: 65
+    type: Quiet
+test_11c2.wav:
+  - start: 1
+    end: 65
+    type: Quiet
+test_11c3.wav:
+  - start: 1
+    end: 65
+    type: Quiet
+
