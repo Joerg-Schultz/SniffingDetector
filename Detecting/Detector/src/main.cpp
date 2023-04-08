@@ -31,7 +31,7 @@ int m_number_of_runs = 0;
 float m_average_detect_time = 0;
 int m_number_of_detections = 0;
 int m_number_of_backgrounds = 0;
-int smoothing_factor = 3;
+int smoothing_factor = 2;
 I2SSampler *m_sample_provider;
 NeuralNetwork *m_nn;
 AudioProcessor *m_audio_processor;
@@ -100,12 +100,14 @@ void detectSniffingTask(void* parameters) {
             delete reader;
             // get the prediction for the spectrogram
             float p_output_array[3];
+            float p_sniffing = p_output_array[0];
             m_nn->predict(p_output_array);
             const int N = sizeof(p_output_array) / sizeof(float);
             int prediction = std::distance(p_output_array, std::max_element(p_output_array, p_output_array + N));
 
             //Serial.printf("Prediction: N1: %2f N2: %2f N3: %2f\t", p_output_array[0], p_output_array[1], p_output_array[2]);
-            if (prediction == 0) {
+            //if (prediction == 0) {
+            if (p_sniffing > 0.9) {
                 //Serial.printf("Sniffing!...\n");
                 m_number_of_backgrounds = 0;
                 m_number_of_detections++;
