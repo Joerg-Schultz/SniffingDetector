@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SniffingDetectorApp</string>
+    <string name="sniffing">Sniffing</string>
+    <string name="not_sniffing">Not Sniffing</string>
+    <string name="connect_to_detector">Connect to Detector</string>
+    <string name="paired">Paired Devices</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+</resources>
