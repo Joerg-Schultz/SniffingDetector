@@ -31,7 +31,7 @@ int m_number_of_runs = 0;
 float m_average_detect_time = 0;
 int m_number_of_detections = 0;
 int m_number_of_backgrounds = 0;
-int smoothing_factor = 2;
+int smoothing_factor = 3;
 I2SSampler *m_sample_provider;
 NeuralNetwork *m_nn;
 AudioProcessor *m_audio_processor;

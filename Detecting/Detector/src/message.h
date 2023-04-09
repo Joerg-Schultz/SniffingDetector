@@ -6,7 +6,7 @@
 #define MARVINDETECTOR_MESSAGE_H
 
 struct message {
-    uint8_t sniffing = 0;
+    bool sniffing = false;
 };
 
 #endif //MARVINDETECTOR_MESSAGE_H
