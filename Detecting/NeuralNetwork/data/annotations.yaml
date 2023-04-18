@@ -9,7 +9,7 @@ test_3.wav:
   - start: 41
     end: 70
     type: Background
-  - start: 71
+  - start: 73
     end: 76
     type: Sniffing
   - start: 76
@@ -33,6 +33,7 @@ test_3.wav:
   - start: 249
     end: 290
     type: Background
+
 test_4.wav:
   - start: 0
     end: 33
@@ -53,31 +54,7 @@ test_4.wav:
     end: 159
     type: Sniffing
   - start: 160
-    end: 225
-    type: Background
-  - start: 247
-    end: 260
-    type: Sniffing
-  - start: 261
-    end: 279
-    type: Background
-  - start: 280
-    end: 295
-    type: Sniffing
-  - start: 305
-    end: 311
-    type: Sniffing
-  - start: 312
-    end: 334
-    type: Background
-  - start: 336
-    end: 341
-    type: Sniffing
-  - start: 343
-    end: 389
-    type: Background
-  - start: 397
-    end: 417
+    end: 180
     type: Background
 test_8.wav:
   - start: 0
@@ -123,27 +100,6 @@ test_9.wav:
   - start: 133
     end: 180
     type: Background
-  - start: 196
-    end: 218
-    type: Background
-  - start: 340
-    end: 351
-    type: Sniffing
-  - start: 353
-    end: 372
-    type: Background
-  - start: 374
-    end: 419
-    type: Background
-  - start: 426
-    end: 440
-    type: Background
-  - start: 446
-    end: 452
-    type: Sniffing
-  - start: 453
-    end: 477
-    type: Background
 test_10.wav:
   - start: 0
     end: 48
@@ -160,7 +116,6 @@ test_10.wav:
   - start: 101
     end: 135
     type: Background
-# Stopped here, too much paws on wood
 test_11.wav:
   - start: 1
     end: 65
