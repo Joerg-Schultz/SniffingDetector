@@ -17,7 +17,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:background="#03A9F4"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:background="@color/primary"/>
     <Button
             android:text="@string/connect_to_detector"
             android:layout_width="wrap_content"

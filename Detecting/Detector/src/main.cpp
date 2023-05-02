@@ -105,9 +105,9 @@ void detectSniffingTask(void* parameters) {
             const int N = sizeof(p_output_array) / sizeof(float);
             int prediction = std::distance(p_output_array, std::max_element(p_output_array, p_output_array + N));
 
-            //Serial.printf("Prediction: N1: %2f N2: %2f N3: %2f\t", p_output_array[0], p_output_array[1], p_output_array[2]);
+            Serial.printf("Prediction: N1: %2f N2: %2f N3: %2f\n", p_output_array[0], p_output_array[1], p_output_array[2]);
             //if (prediction == 0) {
-            if (p_sniffing > 0.9) {
+            if (p_sniffing > 0.8) {
                 //Serial.printf("Sniffing!...\n");
                 m_number_of_backgrounds = 0;
                 m_number_of_detections++;

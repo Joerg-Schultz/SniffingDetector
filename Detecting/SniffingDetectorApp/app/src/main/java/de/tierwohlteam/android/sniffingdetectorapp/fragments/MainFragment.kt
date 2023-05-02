@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -52,11 +53,11 @@ class MainFragment : Fragment() {
                 when (sniffingStatus) {
                     SniffingDetectorStatus.SNIFFING -> {
                         binding.message.text = getString(R.string.sniffing)
-                        binding.message.setBackgroundColor(Color.GREEN)
+                        binding.message.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.accent))
                     }
                     SniffingDetectorStatus.NOT_SNIFFING -> {
                         binding.message.text = getString(R.string.not_sniffing)
-                        binding.message.setBackgroundColor(Color.BLUE)
+                        binding.message.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primaryColor))
                     }
                     else -> { /* NO-OP */
                     }
